@@ -35,3 +35,9 @@ def get_result(user_prompt = "Haleluya", database_schema = "", template = ""):
     print(description.text)
     similarity_score = get_similarity(user_prompt, description.text)
     return code.text, pseudocode.text, description.text, similarity_score
+
+# This function evaluates performance metrics 
+def eval_query(query):
+    prompt = "Give example, expected output and actual output as a json along with time and memory taken for the following code: " + query
+    response = model.generate_content(prompt)
+    return response.text
