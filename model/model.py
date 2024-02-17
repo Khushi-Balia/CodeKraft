@@ -17,11 +17,10 @@ def get_similarity(prompt, description):
     return cos_sim(embeddings[0], embeddings[1])
 
 # This function returns the code, pseudocode, description and similarity score from the given prompt, database schema and template
-def get_result(user_prompt = "Haleluya", database_schema = "", template = ""):
+def get_result(user_prompt, database_schema = "", template = ""):
     print(user_prompt)
     print(database_schema)
     print(template)
-    print("gr: 0")
     if (GEMINI_API_KEY == ""):
         raise ValueError("Please set your API key.")
     # We have two things: user_prompt and database schema
