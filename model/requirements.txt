@@ -1,1 +1,2 @@
 google-generativeai
+sentence_transformers
