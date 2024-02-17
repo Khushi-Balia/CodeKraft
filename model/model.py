@@ -16,6 +16,10 @@ def get_similarity(prompt, description):
     return similarity_score
 
 def get_result(user_prompt, database_schema = "", template = ""):
+
+    if (GEMINI_API_KEY == ""):
+        raise ValueError("Please set your API key.")
+
     # We have two things: user_prompt and database schema
     prompt = "Output code as requested here: " + user_prompt + "Consider the following database schema: " + database_schema + "Display the result uding this format: " + template
 
