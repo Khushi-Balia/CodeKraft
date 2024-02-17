@@ -1,7 +1,7 @@
 import google.generativeai as genai
 from sentence_transformers import SentenceTransformer, util
 
-GEMINI_API_KEY = "AIzaSyCGOYJNkoztEVxDN28qgzhe1VCb-RGSh6c"
+GEMINI_API_KEY = ""
 model = genai.GenerativeModel('gemini-pro')
 genai.configure(api_key = GEMINI_API_KEY)
 
