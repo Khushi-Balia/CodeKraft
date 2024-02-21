@@ -1,1 +1,0 @@
-https://www.kdnuggets.com/how-to-access-and-use-gemini-api-for-free
