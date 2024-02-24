@@ -11,26 +11,28 @@ from model.model import get_result , eval_query
 app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": '*'}})
 
+# This 
 @app.route('/api/analyze', methods=['POST'])
 def analyze():
     try:
         data = request.get_json()
+
         prompt = data.get('prompt', '')
         database_schema = data.get('database_schema', '')
         template = data.get('template', '')
-        print(template)
-        print(prompt)
+
         if not prompt:
             raise ValueError("Prompt is required.")
         
         print("Generating code...")
-        code, pseudocode, description, similarity_score = get_result(prompt, database_schema, template)
-        print(" hehheh")
+        code_text, pseudocode_text, description_text, similarity_score, language, metrics = get_result(prompt, database_schema, template)
         analysis_results = {
-            'code': code,
-            'pseudocode': pseudocode,
-            'description': description,
+            'code': code_text,
+            'pseudocode': pseudocode_text,
+            'description': description_text,
             'similarity_score': similarity_score,
+            'language': language,
+            'metrics': metrics
         }
 
         print("Generation complete...")
@@ -38,29 +40,26 @@ def analyze():
     
     except Exception as e:
         return jsonify({'error': str(e)}), 500 
+    
 @app.route('/api/eval', methods=['POST'])
 def eval():
-    
-    try:
-         
+    try:       
         data = request.get_json() 
+
         code = data.get('code'  ,'')
+
         if not code:
             raise ValueError("Code is required.")
-        print("//////2225555/////////////////////////////////////////")
-        print(code)
-        analysis_code_txt= eval_query(code)
 
-        # print("Generating code22...")
-       
-        # print("uuuprituuuuu")
-        # print(analysis_results.code)
-        # print(analysis_results.pseudocode)
-        analysis_code = { 
-            "code" : analysis_code_txt
+        print("Performing evaluation...")
+        metrics, description_text = eval_query(code)
+
+        evaluation_result = { 
+            'description': description_text,
+            'metrics': metrics
         }
-        print("Generation complete2...")
-        return jsonify(analysis_code)
+        print("Evaluation complete...")
+        return jsonify(evaluation_result)
     
     except Exception as e:
         return jsonify({'error': str(e)}), 500 
