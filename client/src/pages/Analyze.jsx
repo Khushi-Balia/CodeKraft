@@ -10,14 +10,36 @@ import {
 
 const Analyze = () => {
   const { analysisResults } = useAnalysisContext();
-  const { description, similarity_score, code } = analysisResults;
+  const { description, similarity_score, code, language , metrics } = analysisResults;
   const [analysisCode, setResults] = useState({
-    code: "",
+    metrics: metrics,
+    description: description,
   });
+  const [sendingData, setsendingData] = useState({
+    code: code,
+   
+    description: description,
+    similarity_score: similarity_score,
+    language: language,
+    metrics: metrics,
+  });
+
   const [editableCode, setEditableCode] = useState(code);
   const [savedCode, setSavedCode] = useState(code);
   const [isEditing, setIsEditing] = useState(false);
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    // Update editableCode state
+    setEditableCode(value);
+
+    // Update formData state
+    setsendingData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
   const handleEditClick = () => {
     setIsEditing(true);
   };
@@ -42,9 +64,9 @@ const Analyze = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify( analysisResults ),
+        body: JSON.stringify( sendingData ),
       });
-      console.log(analysisResults);
+      console.log(sendingData);
       
 
 
@@ -55,7 +77,7 @@ const Analyze = () => {
       try {
         const analysisCode = await response.json();
         setResults(analysisCode);
-        console.log(analysisCode.code);
+        console.log(analysisCode);
         
 
         
@@ -84,7 +106,7 @@ const Analyze = () => {
         }
         height="270px"
         editable={isEditing}
-        onChange={(e) => setEditableCode(e.target.value)}
+        onChange={handleChange}
       />
       <div>
         {isEditing ? (
@@ -118,7 +140,7 @@ const Analyze = () => {
         title="Explanation"
         content={
           <pre className="text-white">
-            <code className="lang-css python text-white">{description}</code>
+            <code className="lang-css python text-white">{analysisCode.description}</code>
           </pre>
         }
         height="205px"
@@ -164,7 +186,7 @@ const Analyze = () => {
           title="Performance metrics"
           
           content={<SyntaxHighlighter language="c" style={coy}>
-          {analysisCode.code}
+          {analysisCode.metrics}
         </SyntaxHighlighter>}
         height="400px"
         />

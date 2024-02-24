@@ -13,6 +13,8 @@ export const AnalysisProvider = ({ children }) => {
     pseudocode: "",
     description: "",
     similarity_score: "",
+    language: "",
+    metrics: "",
   });
 
   const [isFetching, setIsFetching] = useState(false);
