@@ -11,6 +11,7 @@
 
 body {
   font-family: "Work Sans", sans-serif;
+  overflow: hidden;
 }
 
 body:has(.card[data-color="blue"]:hover) {
@@ -185,6 +186,7 @@ body:has(.card[data-color="green"]:hover) {
 .container {
   display: flex;
   height: 100vh;
+  overflow: hidden;
   /* Set the container height to the full viewport height */
 }
 
@@ -197,6 +199,7 @@ body:has(.card[data-color="green"]:hover) {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  overflow: auto;
 }
 
 aside {
@@ -277,6 +280,7 @@ h2 {
   /* Set the left position to the width of the sidemenu */
   right: 0;
   /* Set the right position to 0 */
+  overflow: auto;
 }
 
 .ai-text-box {
@@ -320,7 +324,7 @@ h2 {
   color: #020202;
   /* white color */
 }
-
+/* 
 pre {
   width: 100%;
   max-width: 100%;
@@ -328,7 +332,7 @@ pre {
   height: 150px;
   word-break: break-word;
   /* Allow words to break when exceeding the container width */
-}
+/* } */
 
 code {
   width: 100%;
@@ -357,7 +361,7 @@ code {
   padding: 16px;
   border-radius: 8px;
   margin-bottom: 10px;
-  margin-top: -210px;
+  margin-top: -150px;
   /* Adjusted margin-top */
 }
 
@@ -466,10 +470,11 @@ code {
 }
 
 .code-runner-container {
-  background-color: #fff; /* White background for code runner */
+  background-color: #f8f6f6; /* White background for code runner */
   padding: 20px;
   border-radius: 8px;
   width: 80%;
+  /* height: 70%; */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
 }
 
@@ -485,7 +490,7 @@ code {
 
 .box {
   background-color: #2b77e7;
-  padding: 20px;
+  padding: 10px;
   border-radius: 10px;
   width: 45%; /* Adjust as needed */
   margin-top: 75px;
@@ -572,7 +577,8 @@ code {
 .tooltip {
   position: relative;
   display: inline-block;
-  margin-left: 10px;
+  margin-left: 50px;
+  margin-right: 10px;
   cursor: pointer;
   float: right; /* Float the element to the right */
   display: inline-flex; /* Use flex container */
@@ -613,4 +619,10 @@ code {
   justify-content: center; /* Center horizontally*/
   position: relative;
   top: -10px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px; /* Adjust as needed */
 }

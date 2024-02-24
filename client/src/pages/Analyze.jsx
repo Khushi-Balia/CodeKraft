@@ -10,14 +10,15 @@ import {
 
 const Analyze = () => {
   const { analysisResults } = useAnalysisContext();
-  const { description, similarity_score, code, language , metrics } = analysisResults;
+  const { description, similarity_score, code, language, metrics } =
+    analysisResults;
   const [analysisCode, setResults] = useState({
     metrics: metrics,
     description: description,
   });
   const [sendingData, setsendingData] = useState({
     code: code,
-   
+
     description: description,
     similarity_score: similarity_score,
     language: language,
@@ -59,30 +60,25 @@ const Analyze = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/api/eval', {
-        method: 'POST',
+      const response = await fetch("http://localhost:5000/api/eval", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify( sendingData ),
+        body: JSON.stringify(sendingData),
       });
       console.log(sendingData);
-      
-
 
       if (!response.ok) {
-        throw new Error('Failed to analyze the essay');
+        throw new Error("Failed to analyze the essay");
       }
 
       try {
         const analysisCode = await response.json();
         setResults(analysisCode);
         console.log(analysisCode);
-        
-
-        
       } catch (error) {
-        console.error('Failed to parse response JSON', error);
+        console.error("Failed to parse response JSON", error);
         // Handle error, show a message, etc.
       }
     } catch (error) {
@@ -93,65 +89,55 @@ const Analyze = () => {
 
   return (
     <div className="Login-container">
-    <div className="box1 mt-12">
-      <h1 className="text-center text-xl text-white">
-        Code generated and its explanation
-      </h1>
-      <AiTextBox2
-        title="Input"
-        content={
-          <SyntaxHighlighter language="python" style={coy}>
-            {isEditing ? editableCode : savedCode}
-          </SyntaxHighlighter>
-        }
-        height="270px"
-        editable={isEditing}
-        onChange={handleChange}
-      />
-      <div>
-        {isEditing ? (
-          <button
-            className="button1"
-            type="button"
-            onClick={handleSaveClick}
-          >
-            Save
-          </button>
-        ) : (
-          <>
-            <button
-              className="button1"
-              type="button"
-              onClick={handleSubmit}
-            >
-              Generate report
-            </button>
-            <button
-              className="button1"
-              type="button"
-              onClick={handleEditClick}
-            >
-              Edit
-            </button>
-          </>
-        )}
+      <div className="box1 mt-12">
+        <h1 className="text-center text-xl text-white">
+          Code generated and its explanation
+        </h1>
+        <AiTextBox2
+          title="Input"
+          content={
+            <SyntaxHighlighter language="python" style={coy}>
+              {isEditing ? editableCode : savedCode}
+            </SyntaxHighlighter>
+          }
+          height="260px"
+          editable={isEditing}
+          onChange={handleChange}
+        />
+        <div>
+        <div className="button-container">
+  {isEditing ? (
+    <button className="button1" type="button" onClick={handleSaveClick}>
+      Save
+    </button>
+  ) : (
+    <>
+      <button className="button1" type="button" onClick={handleSubmit}>
+        Generate report
+      </button>
+      <button className="button1" type="button" onClick={handleEditClick}>
+        Edit
+      </button>
+    </>
+  )}
+</div>
+        </div>
+        <AiTextBox4
+          title="Explanation"
+          content={
+            <pre className="text-white">
+              <code className="lang-css python text-white">
+                {analysisCode.description}
+              </code>
+            </pre>
+          }
+          height="205px"
+        />
+
+
       </div>
-      <AiTextBox4
-        title="Explanation"
-        content={
-          <pre className="text-white">
-            <code className="lang-css python text-white">{analysisCode.description}</code>
-          </pre>
-        }
-        height="205px"
-      />
-      <br /><br /><br /><br /><br /><br /><br /><br /><br />
-      <br /><br />
-    </div>
-    <div className="box mt-12">
-      <h1 className="text-center text-xl text-white">
-        Analysis of the code
-      </h1>
+      <div className="box mt-12">
+        <h1 className="text-center text-xl text-white">Analysis of the code</h1>
         <AiTextBox4
           title="Similarity Score"
           content={similarity_score}
@@ -171,7 +157,6 @@ const Analyze = () => {
             memory usage.
           </div>
         </div>
-        
         <br />
         <br />
         <br />
@@ -181,31 +166,14 @@ const Analyze = () => {
         <br />
         <br />
         <br />
-        
-        <AiTextBox2
+        <AiTextBox3
           title="Performance metrics"
-          
-          content={<SyntaxHighlighter language="c" style={coy}>
-          {analysisCode.metrics}
-        </SyntaxHighlighter>}
-        height="400px"
-        />
-        
-      </div>
-    </div>
-  );
-};
-
-const AiTextBox3 = ({ title, content, onChange }) => {
-  return (
-    <div className="ai-text-box3">
-      <h2>{title}</h2>
-      <div className="ai-content3">
-        <textarea
-          className="ai-input"
-          value={content}
-          onChange={onChange}
-          placeholder="Enter something..."
+          content={            
+              <SyntaxHighlighter language="c" style={coy}>
+                {analysisCode.metrics}
+              </SyntaxHighlighter>
+          }
+          height="380px"
         />
       </div>
     </div>
@@ -217,22 +185,53 @@ const AiTextBox2 = ({ title, content, height, editable, onChange }) => {
   return (
     <div className="ai-text-box3" style={{ height: height }}>
       <h2>{title}</h2>
-      <div className="ai-content2">
-        {editable ? (
-          <textarea
-            className="ai-input"
-            defaultValue={content.props.children}
-            onChange={onChange}
-            style={{ height: 150 }}
-          />
-        ) : (
-          content
-        )}
+      <div className="ai-content2"><pre style={{
+              width: '100%',
+              maxWidth: '100%',
+              overflow: 'auto',
+              height: '150px',
+              wordBreak: 'break-word'
+            }}>{editable ? (
+              <textarea
+                className="ai-input"
+                defaultValue={content.props.children}
+                onChange={onChange}
+                style={{ height: 150 }}
+              />
+            ) : (
+              content
+            )}</pre>
+        
       </div>
     </div>
   );
 };
 
+const AiTextBox3 = ({ title, content, height, editable, onChange }) => {
+  return (
+    <div className="ai-text-box3" style={{ height: height }}>
+      <h2>{title}</h2>
+      <div className="ai-content2"><pre style={{
+              width: '100%',
+              maxWidth: '100%',
+              overflow: 'auto',
+              height: '270px',
+              wordBreak: 'break-word'
+            }}>{editable ? (
+              <textarea
+                className="ai-input"
+                defaultValue={content.props.children}
+                onChange={onChange}
+                style={{ height: 150 }}
+              />
+            ) : (
+              content
+            )}</pre>
+        
+      </div>
+    </div>
+  );
+};
 
 const AiTextBox4 = ({ title, content, height }) => {
   return (
@@ -240,7 +239,13 @@ const AiTextBox4 = ({ title, content, height }) => {
       <h2>{title}</h2>
       <div className="ai-content">
         <pre className="text-white custom-scrollbar">
-          <code className="lang-css python text-white">{content}</code>
+          <code className="lang-css python text-white"><pre style={{
+              width: '100%',
+              maxWidth: '100%',
+              overflow: 'auto',
+              height: '150px',
+              wordBreak: 'break-word'
+            }}>{content}</pre></code>
         </pre>
       </div>
     </div>

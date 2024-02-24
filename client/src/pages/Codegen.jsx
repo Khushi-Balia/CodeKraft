@@ -12,6 +12,7 @@ import axios from "axios";
 const Codegen = () => {
   const [activeTab, setActiveTab] = useState(1);
   const { analysisResults, setResults, setFetching } = useAnalysisContext();
+  const [loading, setLoading] = useState(false); 
 
   const [formData, setFormData] = useState({
     prompt: "",
@@ -33,6 +34,7 @@ const Codegen = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setFetching(true);
+    setLoading(true);
 
     try {
       const response = await fetch("http://localhost:5000/api/analyze", {
@@ -60,6 +62,7 @@ const Codegen = () => {
       console.error(error);
     } finally {
       setFetching(false);
+      setLoading(false);
     }
   };
 
@@ -118,33 +121,69 @@ const Codegen = () => {
       <section className="ai-section">
         <br />
         <br />
-        <AiTextBox
-          title="Code"
-          content={
-            <SyntaxHighlighter language="python" style={okaidia}>
-              {analysisResults.code}
-            </SyntaxHighlighter>
-          }
-        />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <AiTextBox2
-          title="Pseudocode"
-          content={
-            <SyntaxHighlighter language="markdown" style={coy}>
-              {analysisResults.pseudocode}
-            </SyntaxHighlighter>
-          }
-        />
+        {loading ? (
+          // Show a loading state while fetching data
+          <>
+          <AiTextBox
+            title="Code"
+            content={
+              <SyntaxHighlighter language="python" style={okaidia}>
+                {"Generating..."}
+              </SyntaxHighlighter>
+            }
+          />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <AiTextBox2
+            title="Pseudocode"
+            content={
+              <SyntaxHighlighter language="markdown" style={coy}>
+                {"Generating..."}
+              </SyntaxHighlighter>
+            }
+          />
+        </>
+        ) : (
+          // Render AiTextBox components when data is available
+          <>
+            <AiTextBox
+              title="Code"
+              content={
+                <SyntaxHighlighter language="python" style={okaidia}>
+                  {analysisResults.code}
+                </SyntaxHighlighter>
+              }
+            />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <AiTextBox2
+              title="Pseudocode"
+              content={
+                <SyntaxHighlighter language="markdown" style={coy}>
+                  {analysisResults.pseudocode}
+                </SyntaxHighlighter>
+              }
+            />
+          </>
+        )}
         <div>
           <span>
             <br />
@@ -203,7 +242,13 @@ const AiTextBox = ({ title, content }) => {
   return (
     <div className="ai-text-box">
       <h2>{title}</h2>
-      <div className="ai-content">{content}</div>
+      <div className="ai-content"><pre style={{
+              width: '100%',
+              maxWidth: '100%',
+              overflow: 'auto',
+              height: '200px',
+              wordBreak: 'break-word'
+            }}>{content}</pre></div>
     </div>
   );
 };
@@ -212,7 +257,13 @@ const AiTextBox2 = ({ title, content }) => {
   return (
     <div className="ai-text-box2">
       <h2>{title}</h2>
-      <div className="ai-content2">{content}</div>
+      <div className="ai-content"><pre style={{
+              width: '100%',
+              maxWidth: '100%',
+              overflow: 'auto',
+              height: '200px',
+              wordBreak: 'break-word'
+            }}>{content}</pre></div>
     </div>
   );
 };

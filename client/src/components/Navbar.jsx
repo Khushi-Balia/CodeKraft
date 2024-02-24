@@ -5,15 +5,19 @@ const Navbar = () => {
     <header className="header">
       <NavLink
         to="/"
-        className="w-20 h-10 rounded-lg bg-white items-center justify-center flex font-bold shadow-md"
+        className="w-20 h-10 rounded-lg items-center justify-center flex font-bold"
       >
-        <p className="blue-gradient_text"> Home</p>
+        
       </NavLink>
       <nav className="flex text-lg gap-7 font-medium">
+      <NavLink
+        to="/" className={({ isActive }) =>
+        isActive ? "text-blue-300 underline" : "text-black"
+      }>Home</NavLink>
         <NavLink
           to="/codegen"
           className={({ isActive }) =>
-            isActive ? "text-blue-300" : "text-black"
+            isActive ? "text-blue-300 underline" : "text-black"
           }
         >
           CodeGen
@@ -21,7 +25,7 @@ const Navbar = () => {
         <NavLink
           to="/analyze"
           className={({ isActive }) =>
-            isActive ? "text-blue-300" : "text-black"
+            isActive ? "text-blue-300 underline" : "text-black"
           }
         >
           Analyze
@@ -29,7 +33,7 @@ const Navbar = () => {
         <NavLink
           to="/validate"
           className={({ isActive }) =>
-            isActive ? "text-blue-300" : "text-black"
+            isActive ? "text-blue-300 underline" : "text-black"
           }
         >
           Validate
