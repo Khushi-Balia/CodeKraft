@@ -99,6 +99,7 @@ const Analyze = () => {
       </h1>
       <AiTextBox2
         title="Input"
+        name="code"
         content={
           <SyntaxHighlighter language="python" style={coy}>
             {isEditing ? editableCode : savedCode}
@@ -213,7 +214,7 @@ const AiTextBox3 = ({ title, content, onChange }) => {
 };
 
 
-const AiTextBox2 = ({ title, content, height, editable, onChange }) => {
+const AiTextBox2 = ({ title, content, height,name, editable, onChange }) => {
   return (
     <div className="ai-text-box3" style={{ height: height }}>
       <h2>{title}</h2>
@@ -221,6 +222,7 @@ const AiTextBox2 = ({ title, content, height, editable, onChange }) => {
         {editable ? (
           <textarea
             className="ai-input"
+            name={name}
             defaultValue={content.props.children}
             onChange={onChange}
             style={{ height: 150 }}
