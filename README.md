@@ -34,11 +34,16 @@ This project aims to create a user-friendly tool for generating code quickly bas
  ┃ ┃ ┃ ┃ ┣ 📄Bird.jsx 
  ┃ ┃ ┃ ┃ ┣ 📄Island.jsx
  ┃ ┃ ┃ ┃ ┣ 📄Sky.jsx
- ┃ ┃ ┃ ┣ 📂pages  //Pending corrections
- ┃ ┃ ┃ ┃ ┣ 📄
- ┃ ┃ ┃ ┃ ┣ 📄
+ ┃ ┃ ┃ ┣ 📂pages  
+ ┃ ┃ ┃ ┃ ┣ 📄Analyze.jsx
+ ┃ ┃ ┃ ┃ ┣ 📄Codegen.jsx
+ ┃ ┃ ┃ ┃ ┣ 📄DataContext.jsx
+ ┃ ┃ ┃ ┃ ┣ 📄Home.jsx
+ ┃ ┃ ┃ ┃ ┣ 📄Validate.jsx
+ ┃ ┃ ┃ ┃ ┣ 📄index.js
  ┃ ┃ ┃ ┣ 📄App.jsx
  ┃ ┃ ┃ ┣ 📄index.css
+ ┃ ┃ ┃ ┣ 📄main.css
  ┃ ┃ ┣ 📄index.html
  ┣ 📂model                             // Standalone model         
  ┃ ┣ 📄model.py   
@@ -122,12 +127,23 @@ python app.py
 
 ## Screenshots of Website
 
-<img src = "./assets/ss4.png">
-<img src = "./assets/ss5.png">
+Landing page of the website
+<img src = "./assets/ss1.png">
+Generating an SQL query
 <img src = "./assets/ss2.png">
 <img src = "./assets/ss3.png">
-<img src = "./assets/ss1.png">
+<img src = "./assets/ss4.png">
+<img src = "./assets/ss5.png">
 <img src = "./assets/ss6.png">
+<img src = "./assets/ss7.png">
+<img src = "./assets/ss8.png">
+<img src = "./assets/ss9.png">
+Generating a C++ code
+<img src = "./assets/ss10.png">
+<img src = "./assets/ss11.png">
+<img src = "./assets/ss12.png">
+<img src = "./assets/ss13.png">
+<img src = "./assets/ss14.png">
 
 ## Contributors
 
