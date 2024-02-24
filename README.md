@@ -21,7 +21,11 @@ This project aims to create a user-friendly tool for generating code quickly bas
 ## Demo
 
 
-https://github.com/Khushi-Balia/CodeKraft/assets/104241344/b42cdf08-9c29-4eaa-9a36-a131a0696ec5
+
+
+
+https://github.com/Khushi-Balia/CodeKraft/assets/104241344/da9e4824-3899-40a1-bfe8-8473ec930dae
+
 
 
 ## File Structure
