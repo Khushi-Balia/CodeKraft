@@ -6,12 +6,12 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 parent_dir = os.path.dirname(current_dir)
 sys.path.append(parent_dir)
 
-from model.model import get_result , eval_query
+from model.model import get_result, eval_query
 
 app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": '*'}})
 
-# This 
+# This endpoint is used to analyze the propmt on CodeGen page and generate code, pseudocode, description, similarity score, language and performance metrics
 @app.route('/api/analyze', methods=['POST'])
 def analyze():
     try:
@@ -40,7 +40,8 @@ def analyze():
     
     except Exception as e:
         return jsonify({'error': str(e)}), 500 
-    
+
+# This endpoint is used to evaluate the code edited by the user on Analyze page and generate description and performance metrics
 @app.route('/api/eval', methods=['POST'])
 def eval():
     try:       
@@ -63,5 +64,6 @@ def eval():
     
     except Exception as e:
         return jsonify({'error': str(e)}), 500 
+    
 if __name__ == '__main__':
     app.run(debug=True)
