@@ -67,7 +67,7 @@ https://github.com/Khushi-Balia/CodeKraft/assets/104241344/da9e4824-3899-40a1-bf
 Clone the project by typing the following command in your Terminal/CommandPrompt
 
 ```
-git clone https://github.com/Khushi-Balia/CodeRed
+git clone https://github.com/Khushi-Balia/CodeKraft
 ```
 Navigate to the CodeKraft folder
 
