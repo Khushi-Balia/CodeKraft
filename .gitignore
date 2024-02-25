@@ -3,9 +3,11 @@
 
 # Avoiding virtual environment file
 /server/venv
+/server/codekraft
 /venv
+/codekraft
 
-# Avoid files containing configurations
+# Avoiding files containing configurations
 /model/config.txt
 
 # Logs

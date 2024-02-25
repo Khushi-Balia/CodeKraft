@@ -99,6 +99,8 @@ To run the frontend
 npm run dev
 ```
 
+Once the above command is executed, the frontend will be running at ```localhost:5173```. You can visit http://localhost:5173/ to view the website.
+
 #### Backend
 
 To generate a API Key, refer the steps as given <a href = "https://www.kdnuggets.com/how-to-access-and-use-gemini-api-for-free">here</a>. Create a new file in ```/model``` directory called ```config.txt``` and paste the API key in it.
@@ -112,14 +114,14 @@ cd server
 Create a virtual environment to install all the dependencies
 
 ```
-python -m venv venv
+python -m venv codekraft
 ```
 
 Activate the virtual environment
 
-For Windows: ```venv\Scripts\activate```
+For Windows: ```codekraft\Scripts\activate```
 
-For Linux: ```source venv/bin/activate```
+For Linux: ```source codekraft/bin/activate```
 
 Install all the required dependencies
 
